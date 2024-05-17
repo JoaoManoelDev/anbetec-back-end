@@ -12,7 +12,7 @@ export class DeleteCompanyController {
 
       await deleteCompanyUseCase.execute({ companyId })
 
-      return response.status(209)
+      return response.status(209).end()
 
     } catch (error) {
       if (error instanceof ResourceNotFoundError) {
