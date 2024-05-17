@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { CreateCompanyController } from "../controllers/companies/create"
+import { CreateCompanyController } from "@/http/controllers/companies/create"
 
 export const companiesRoutes = Router()
 
