@@ -11,4 +11,10 @@ export class PrismaCompanyRepository implements CompaniesRepository {
 
     return newCompany
   }
+
+  async findMany() {
+    const companies = await prisma.company.findMany()
+
+    return companies
+  }
 }

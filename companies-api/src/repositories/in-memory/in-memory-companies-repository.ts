@@ -18,4 +18,10 @@ export class InMemoryCompaniesRepository implements CompaniesRepository {
 
     return newCompany
   }
+
+  async findMany() {
+    const companies = this.companies
+
+    return companies
+  }
 }
