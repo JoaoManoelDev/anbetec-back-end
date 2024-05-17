@@ -38,4 +38,14 @@ export class PrismaCompanyRepository implements CompaniesRepository {
 
     return updatedCompany
   }
+
+  async delete(companyId: string) {
+    await prisma.company.delete({
+      where: {
+        id: companyId
+      }
+    })
+
+    return
+  }
 }

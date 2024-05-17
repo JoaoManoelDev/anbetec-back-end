@@ -5,4 +5,5 @@ export interface CompaniesRepository {
   findMany(): Promise<Company[] | []>
   findById(companyId: string): Promise<Company | null>
   save(company: Company): Promise<Company>
+  delete(companyId: string): Promise<void>
 }

@@ -43,4 +43,15 @@ export class InMemoryCompaniesRepository implements CompaniesRepository {
 
     return company
   }
+
+  async delete(companyId: string) {
+    const companyIndex = this.companies
+      .findIndex(company => company.id === companyId)
+
+    if (companyIndex !== -1) {
+      this.companies.splice(companyIndex, 1)
+    }
+
+    return
+  }
 }
