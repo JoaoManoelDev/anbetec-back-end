@@ -3,11 +3,10 @@ import { beforeEach, describe, expect, it } from "vitest"
 import { InMemoryCompaniesRepository } from "@/repositories/in-memory/in-memory-companies-repository"
 import { GetCompaniesUseCase } from "@/use-cases/get-companies"
 
-
 let companyRepository: InMemoryCompaniesRepository
 let sut: GetCompaniesUseCase
 
-describe("Create Company Use Case", () => {
+describe("Get Company Use Case", () => {
   beforeEach(() => {
     companyRepository = new InMemoryCompaniesRepository()
     sut = new GetCompaniesUseCase(companyRepository)
