@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express"
 import { z } from "zod"
 
 import { makeUpdateCompanyUseCase } from "@/use-cases/factories/make-update-company-use-case"
+import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error"
 
 export class UpdateCompanyController {
   async handler(request: Request, response: Response, next: NextFunction) {
@@ -40,6 +41,10 @@ export class UpdateCompanyController {
       return response.status(200).json(company)
 
     } catch (error) {
+      if (error instanceof ResourceNotFoundError) {
+        return response.status(409).json({ message: error.message })
+      }
+
       return next(error)
     }
   }
