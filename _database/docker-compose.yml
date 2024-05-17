@@ -1,0 +1,11 @@
+version: "2.11.2"
+
+services:
+  backend-challenge-pg:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=backendchallenge
