@@ -8,7 +8,13 @@ export class CreateCompanyController {
     try {
       const createCompanyBodySchema = z.object({
         companyName: z.string(),
-        cnpj: z.string(),
+        cnpj: z.string().refine((value) => {
+          
+          const cnpjRegex = /^\d{14}$/ // Regex para validar que o cnpj possuí 14 dígitos numéricos consecutivos
+          return cnpjRegex.test(value)
+        }, {
+          message: "CNPJ must be 14 digits"
+        }),
         description: z.string(),
       })
 
