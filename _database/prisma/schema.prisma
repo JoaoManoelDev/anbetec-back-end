@@ -19,13 +19,13 @@ model Company {
 }
 
 model User {
-  name       String  @id
+  name       String   @id
   email      String
   password   String
   cpf        String
   phone      String
-  company_id String  @map("companyId")
-  company    Company @relation(fields: [company_id], references: [id])
+  company_id String?  @map("companyId")
+  company    Company? @relation(fields: [company_id], references: [id])
 
   @@map("users")
 }

@@ -8,12 +8,12 @@ datasource db {
 }
 
 model User {
-  name       String @id
+  name       String  @id
   email      String
   password   String
   cpf        String
   phone      String
-  company_id String @map("companyId")
+  company_id String? @map("companyId")
 
   @@map("users")
 }
