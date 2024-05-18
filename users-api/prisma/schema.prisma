@@ -7,25 +7,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Company {
-  id          String @id @default(uuid())
-  companyName String @map("company_name")
-  cnpj        String @unique
-  description String
-
-  User User[]
-
-  @@map("companies")
-}
-
 model User {
-  name      String  @id
-  email     String  @unique
-  password  String
-  cpf       String  @unique
-  phone     String
-  companyId String  @map("company_id")
-  company   Company @relation(fields: [companyId], references: [id])
+  name       String @id
+  email      String
+  password   String
+  cpf        String
+  phone      String
+  company_id String @map("companyId")
 
   @@map("users")
 }

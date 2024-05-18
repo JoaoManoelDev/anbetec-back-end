@@ -8,10 +8,24 @@ datasource db {
 }
 
 model Company {
-  id          String @id @default(uuid())
-  companyName String @map("company_name")
-  cnpj        String @unique
-  description String
+  id           String @id @default(uuid())
+  company_name String @map("companyName")
+  cnpj         String
+  description  String
+
+  User User[]
 
   @@map("companies")
+}
+
+model User {
+  name       String  @id
+  email      String
+  password   String
+  cpf        String
+  phone      String
+  company_id String  @map("companyId")
+  company    Company @relation(fields: [company_id], references: [id])
+
+  @@map("users")
 }
