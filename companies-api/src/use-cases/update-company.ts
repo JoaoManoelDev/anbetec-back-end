@@ -5,9 +5,9 @@ import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-err
 interface UpdateCompanyUseCaseRequest {
   companyId: string
   companyUpdate: {
-    companyName: string
-    cnpj: string
-    description: string
+    companyName: string | undefined
+    cnpj: string | undefined
+    description: string | undefined
   }
 }
 
@@ -28,11 +28,14 @@ export class UpdateCompanyUseCase {
       throw new ResourceNotFoundError()
     }
 
-    company.companyName = companyUpdate.companyName
-    company.cnpj = companyUpdate.cnpj
-    company.description = companyUpdate.description
+    const companyUpdateToSave = {
+      ...company,
+      companyName: companyUpdate.companyName,
+      cnpj: companyUpdate.cnpj,
+      description: companyUpdate.description
+    }
 
-    const updatedCompany = await this.companiesRepositories.save(company)
+    const updatedCompany = await this.companiesRepositories.save(companyUpdateToSave)
 
     return { company: updatedCompany }
   }
