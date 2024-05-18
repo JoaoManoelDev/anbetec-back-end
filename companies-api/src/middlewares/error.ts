@@ -14,6 +14,10 @@ export const errorHandler = (
       .send({ message: "Validation error", issues: error.formErrors.fieldErrors })
   }
 
+  if (error instanceof SyntaxError) {
+    return response.status(400).json({ message: `Syntax Error - ${error.message}` })
+  }
+
   if (env.NODE_ENV !== "production") {
     console.log("[ERROR]", error)
   } else {
