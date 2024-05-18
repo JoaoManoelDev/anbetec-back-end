@@ -11,3 +11,10 @@ export type CompanyInput = {
   cnpj: string
   description: string
 }
+
+export type CompanyUpdateInput = {
+  id?: string | undefined
+  companyName?: string | undefined
+  cnpj?: string | undefined
+  description?: string | undefined
+}
