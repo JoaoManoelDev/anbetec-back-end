@@ -10,15 +10,15 @@ export class UpdateCompanyController {
       const companyId = request.params.id
 
       const updateCompanyBodySchema = z.object({
-        companyName: z.string(),
+        companyName: z.string().optional(),
         cnpj: z.string().refine((value) => {
           
           const cnpjRegex = /^\d{14}$/ // Regex para validar que o cnpj possuí 14 dígitos numéricos consecutivos
           return cnpjRegex.test(value)
         }, {
           message: "CNPJ must be 14 digits"
-        }),
-        description: z.string(),
+        }).optional(),
+        description: z.string().optional(),
       })
 
       const {
