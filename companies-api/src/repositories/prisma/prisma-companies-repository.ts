@@ -28,6 +28,16 @@ export class PrismaCompanyRepository implements CompaniesRepository {
     return company
   }
 
+  async findByCNPJ(companyCNPJ: string) {
+    const company = await prisma.company.findUnique({
+      where: {
+        cnpj: companyCNPJ
+      }
+    })
+
+    return company
+  }
+
   async save(company: Company) {
     const updatedCompany = await prisma.company.update({
       where: {

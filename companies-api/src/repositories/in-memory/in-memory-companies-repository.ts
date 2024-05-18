@@ -33,6 +33,14 @@ export class InMemoryCompaniesRepository implements CompaniesRepository {
     return company
   }
 
+  async findByCNPJ(companyCNPJ: string) {
+    const company = this.companies.find(company => company.cnpj === companyCNPJ)
+
+    if (!company) return null
+
+    return company
+  }
+
   async save(company: Company) {
     const companyIndex = this.companies
       .findIndex(company => company.id === company.id)

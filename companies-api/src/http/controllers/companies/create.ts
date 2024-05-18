@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express"
 import { z } from "zod"
 
 import { makeCreateCompanyUseCase } from "@/use-cases/factories/make-create-company-use-case"
+import { CompanyAlreadyExistsError } from "@/use-cases/errors/company-already-exists"
 
 export class CreateCompanyController {
   async handler(request: Request, response: Response, next: NextFunction) {
@@ -35,6 +36,10 @@ export class CreateCompanyController {
       return response.status(201).json(company)
 
     } catch (error) {
+      if (error instanceof CompanyAlreadyExistsError) {
+        return response.status(409).json({ message: error.message })
+      }
+      
       return next(error)
     }
   }

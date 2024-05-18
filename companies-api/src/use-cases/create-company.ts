@@ -1,5 +1,6 @@
 import { Company } from "@/repositories/dtos/company"
 import { CompaniesRepository } from "@/repositories/companies-repository"
+import { CompanyAlreadyExistsError } from "@/use-cases/errors/company-already-exists"
 
 interface CreateCompanyUseCaseRequest {
   companyName: string
@@ -19,6 +20,12 @@ export class CreateCompanyUseCase {
     cnpj,
     description
   }: CreateCompanyUseCaseRequest): Promise<CreateCompanyUseCaseResponse> {
+    const companyExists = await this.companiesRepository.findByCNPJ(cnpj)
+
+    if (companyExists) {
+      throw new CompanyAlreadyExistsError()
+    }
+
     const company = await this.companiesRepository.create({
       companyName,
       cnpj,
