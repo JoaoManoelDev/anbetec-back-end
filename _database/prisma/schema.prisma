@@ -13,19 +13,5 @@ model Company {
   cnpj        String @unique
   description String
 
-  User User[]
-
   @@map("companies")
-}
-
-model User {
-  name      String  @id
-  email     String  @unique
-  password  String
-  cpf       String  @unique
-  phone     String
-  companyId String  @map("company_id")
-  company   Company @relation(fields: [companyId], references: [id])
-
-  @@map("users")
 }
