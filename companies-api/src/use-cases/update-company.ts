@@ -1,5 +1,4 @@
-import { Company } from "@prisma/client"
-
+import { Company } from "@/repositories/dtos/company"
 import { CompaniesRepository } from "@/repositories/companies-repository"
 import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error"
 
@@ -17,7 +16,7 @@ interface UpdateCompanyUseCaseResponse {
 }
 
 export class UpdateCompanyUseCase {
-  constructor(private companiesRepositories: CompaniesRepository) {}
+  constructor(private companiesRepositories: CompaniesRepository) { }
 
   async execute({
     companyId,

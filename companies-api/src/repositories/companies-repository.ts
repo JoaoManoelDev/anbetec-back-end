@@ -1,7 +1,7 @@
-import { Company, Prisma } from "@prisma/client"
+import { Company, ComponentIdInput } from "@/repositories/dtos/company"
 
 export interface CompaniesRepository {
-  create(company: Prisma.CompanyCreateInput): Promise<Company>
+  create(company: ComponentIdInput): Promise<Company>
   findMany(): Promise<Company[] | []>
   findById(companyId: string): Promise<Company | null>
   save(company: Company): Promise<Company>

@@ -1,5 +1,4 @@
-import { Company } from "@prisma/client"
-
+import { Company } from "@/repositories/dtos/company"
 import { CompaniesRepository } from "@/repositories/companies-repository"
 
 interface CreateCompanyUseCaseRequest {
@@ -13,7 +12,7 @@ interface CreateCompanyUseCaseResponse {
 }
 
 export class CreateCompanyUseCase {
-  constructor(private companiesRepository: CompaniesRepository) {}
+  constructor(private companiesRepository: CompaniesRepository) { }
 
   async execute({
     companyName,

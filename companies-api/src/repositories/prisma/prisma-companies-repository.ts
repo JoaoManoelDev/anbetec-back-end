@@ -1,10 +1,10 @@
-import { Company, Prisma } from "@prisma/client"
+import { Company, ComponentIdInput } from "@/repositories/dtos/company"
 
 import { prisma } from "@/lib/prisma"
 import { CompaniesRepository } from "@/repositories/companies-repository"
 
 export class PrismaCompanyRepository implements CompaniesRepository {
-  async create(company: Prisma.CompanyCreateInput) {
+  async create(company: ComponentIdInput) {
     const newCompany = await prisma.company.create({
       data: company
     })

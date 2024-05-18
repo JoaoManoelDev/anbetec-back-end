@@ -1,12 +1,12 @@
 import { randomUUID } from "node:crypto"
-import { Company, Prisma } from "@prisma/client"
 
+import { Company, ComponentIdInput } from "@/repositories/dtos/company"
 import { CompaniesRepository } from "@/repositories/companies-repository"
 
 export class InMemoryCompaniesRepository implements CompaniesRepository {
   public companies: Company[] = []
 
-  async create(company: Prisma.CompanyCreateInput) {
+  async create(company: ComponentIdInput) {
     const newCompany = {
       id: company.id ?? randomUUID(),
       companyName: company.companyName,
