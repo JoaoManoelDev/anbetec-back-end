@@ -1,10 +1,10 @@
-import { Company, CompanyInput } from "@/repositories/dtos/company"
+import { CompanyUpdateInput, CompanyCreateInput } from "@/repositories/dtos/company"
 
 import { prisma } from "@/lib/prisma"
 import { CompaniesRepository } from "@/repositories/companies-repository"
 
 export class PrismaCompanyRepository implements CompaniesRepository {
-  async create(company: CompanyInput) {
+  async create(company: CompanyCreateInput) {
     const newCompany = await prisma.company.create({
       data: company
     })
@@ -38,7 +38,7 @@ export class PrismaCompanyRepository implements CompaniesRepository {
     return company
   }
 
-  async save(company: Company) {
+  async save(company: CompanyUpdateInput) {
     const updatedCompany = await prisma.company.update({
       where: {
         id: company.id
