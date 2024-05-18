@@ -5,7 +5,7 @@ export type Company = {
   description: string
 }
 
-export type ComponentIdInput = {
+export type CompanyInput = {
   id?: string | undefined
   companyName: string
   cnpj: string

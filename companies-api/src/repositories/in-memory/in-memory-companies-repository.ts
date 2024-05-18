@@ -1,12 +1,12 @@
 import { randomUUID } from "node:crypto"
 
-import { Company, ComponentIdInput } from "@/repositories/dtos/company"
+import { Company, CompanyInput } from "@/repositories/dtos/company"
 import { CompaniesRepository } from "@/repositories/companies-repository"
 
 export class InMemoryCompaniesRepository implements CompaniesRepository {
   public companies: Company[] = []
 
-  async create(company: ComponentIdInput) {
+  async create(company: CompanyInput) {
     const newCompany = {
       id: company.id ?? randomUUID(),
       companyName: company.companyName,
