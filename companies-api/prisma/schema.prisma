@@ -8,10 +8,10 @@ datasource db {
 }
 
 model Company {
-  id           String @id @default(uuid())
-  company_name String @map("companyName")
-  cnpj         String @unique
-  description  String
+  id          String @id @default(uuid())
+  companyName String
+  cnpj        String @unique
+  description String
 
   @@map("companies")
 }
