@@ -1,13 +1,13 @@
 import { UsersRepository } from "@/repositories/users-repository"
-import { UserInput, User } from "@/repositories/dtos/user"
+import { User } from "@/repositories/dtos/user"
 
 export class InMemoryUsersRepository implements UsersRepository {
   public users: User[] = []
 
-  async create(user: UserInput) {
+  async create(user: User) {
     const newUser = {
       name: user.name,
-      company_id: user.company_id,
+      companyIdd: user.companyId,
       cpf: user.cpf,
       email: user.email,
       password: user.password,
@@ -21,6 +21,21 @@ export class InMemoryUsersRepository implements UsersRepository {
 
   async findByName(name: string) {
     const user = this.users.find(user => user.name === name)
+
+    if (!user) return null
+
+    return user
+  }
+
+  async findByCpf(cpf: string): Promise<User | null> {
+    const user = this.users.find(user => user.cpf === cpf)
+
+    if (!user) return null
+
+    return user
+  }
+  async findByEmail(email: string): Promise<User | null> {
+    const user = this.users.find(user => user.email === email)
 
     if (!user) return null
 
