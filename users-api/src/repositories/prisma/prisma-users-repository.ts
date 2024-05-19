@@ -30,7 +30,7 @@ export class PrismaUsersRepository implements UsersRepository {
     return user
   }
 
-  async findByCpf(cpf: string): Promise<User | null> {
+  async findByCpf(cpf: string) {
     console.log("INPUT CPF", cpf)
 
     const user = await prisma.user.findUnique({
@@ -38,8 +38,6 @@ export class PrismaUsersRepository implements UsersRepository {
         cpf: cpf
       }
     })
-
-    console.log("USER NO REPOSITORY", user)
 
     if (!user) return null
 
@@ -56,5 +54,11 @@ export class PrismaUsersRepository implements UsersRepository {
     if (!user) return null
 
     return user
+  }
+
+  async findMany() {
+    const users = await prisma.user.findMany()
+    
+    return users
   }
 }
