@@ -4,14 +4,14 @@ export type User = {
   password: string
   cpf: string
   phone: string
-  company_id: string | null
+  companyId?: string | null
 }
 
-export type UserInput = {
-  name?: string
+export type UserCreateInput = {
+  name?: string | undefined
   email: string
   password: string
   cpf: string
   phone: string
-  company_id: string | null
+  companyId?: string | null
 }
