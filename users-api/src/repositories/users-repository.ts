@@ -1,4 +1,8 @@
-import { User, UserCreateInput } from "@/repositories/dtos/user"
+import {
+  User,
+  UserCreateInput,
+  UserUpdateInput,
+} from "@/repositories/dtos/user"
 
 export interface UsersRepository {
   create(user: UserCreateInput): Promise<User>
@@ -7,4 +11,5 @@ export interface UsersRepository {
   findByEmail(email: string): Promise<User | null>
   findMany(): Promise<User[] | []>
   delete(name: string): Promise<void>
+  save(user: UserUpdateInput): Promise<User>
 }

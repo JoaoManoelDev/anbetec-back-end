@@ -12,7 +12,7 @@ export class InMemoryUsersRepository implements UsersRepository {
       email: user.email,
       password: user.password,
       phone: user.phone
-    } as User
+    }
 
     this.users.push(newUser)
 
@@ -45,6 +45,17 @@ export class InMemoryUsersRepository implements UsersRepository {
 
   async findMany() {
     return this.users
+  }
+
+  async save(user: User) {
+    const userIndex = this.users
+      .findIndex(user => user.name === user.name)
+
+    if (userIndex >= 0) {
+      this.users[userIndex] = user
+    }
+
+    return user
   }
 
   async delete(name: string) {

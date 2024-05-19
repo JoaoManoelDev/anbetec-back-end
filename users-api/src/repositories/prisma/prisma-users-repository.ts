@@ -1,5 +1,5 @@
 import { UsersRepository } from "@/repositories/users-repository"
-import { User } from "@/repositories/dtos/user"
+import { User, UserUpdateInput } from "@/repositories/dtos/user"
 import { prisma } from "@/lib/prisma"
 
 export class PrismaUsersRepository implements UsersRepository {
@@ -70,5 +70,16 @@ export class PrismaUsersRepository implements UsersRepository {
     })
 
     return
+  }
+
+  async save(user: UserUpdateInput): Promise<User> {
+    const updatedUser = await prisma.user.update({
+      where: {
+        name: user.name
+      },
+      data: user
+    })
+
+    return updatedUser
   }
 }
