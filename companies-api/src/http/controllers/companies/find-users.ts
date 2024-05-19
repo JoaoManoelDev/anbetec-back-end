@@ -1,17 +1,15 @@
 import { NextFunction, Request, Response } from "express"
 
-import { GetUsersByCompanyService } from "@/services/get-users-by-company"
+import { makeGetUsersByCompanyUseCase } from "@/use-cases/factories/make-get-users-by-company"
 
 export class FindUsersController {
   async handler(request: Request, response: Response, next: NextFunction) {
     try {
       const companyId = request.params.id
 
-      const getUsers = new GetUsersByCompanyService()
+      const GetUsersByCompanyUseCase = makeGetUsersByCompanyUseCase()
 
-      const users = await getUsers.execute({ companyId })
-
-      console.log("CONTROLLER SERVICE", users)
+      const users = await GetUsersByCompanyUseCase.execute({ companyId })
 
       return response.status(200).json(users)
 
