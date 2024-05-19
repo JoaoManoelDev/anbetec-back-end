@@ -31,7 +31,6 @@ export class PrismaUsersRepository implements UsersRepository {
   }
 
   async findByCpf(cpf: string) {
-    console.log("INPUT CPF", cpf)
 
     const user = await prisma.user.findUnique({
       where: {
