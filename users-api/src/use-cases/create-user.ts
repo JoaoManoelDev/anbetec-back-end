@@ -1,6 +1,8 @@
 import { User } from "@/repositories/dtos/user"
 import { UsersRepository } from "@/repositories/users-repository"
 import { UserAlreadyExistsError } from "@/use-cases/errors/user-already-exists-error"
+import { EmailAlreadyExistsError } from "@/use-cases/errors/email-already-exists-error"
+import { CpfAlreadyExistsError } from "@/use-cases/errors/cpf-already-exists-error"
 import { passwordHash } from "@/lib/hash"
 
 interface CreateUserUseCaseRequest {
@@ -9,7 +11,7 @@ interface CreateUserUseCaseRequest {
   password: string
   cpf: string
   phone: string
-  company_id: string | null
+  companyId?: string | null
 }
 
 interface CreateUserUseCaseResponse {
@@ -17,21 +19,27 @@ interface CreateUserUseCaseResponse {
 }
 
 export class CreateUserUseCase {
-  constructor(private usersRepository: UsersRepository) {}
+  constructor(private usersRepository: UsersRepository) { }
 
   async execute({
     name,
     cpf,
     email,
     password,
-    company_id,
+    companyId,
     phone
   }: CreateUserUseCaseRequest): Promise<CreateUserUseCaseResponse> {
     const userExists = await this.usersRepository.findByName(name)
 
-    if (userExists) {
-      throw new UserAlreadyExistsError()
-    }
+    if (userExists) throw new UserAlreadyExistsError()
+
+    const emailExists = await this.usersRepository.findByEmail(email)
+
+    if (emailExists) throw new EmailAlreadyExistsError()
+
+    const cpfExists = await this.usersRepository.findByCpf(cpf)
+
+    if (cpfExists) throw new CpfAlreadyExistsError()
 
     const passwordHashed = await passwordHash({ password })
 
@@ -40,7 +48,7 @@ export class CreateUserUseCase {
       cpf,
       email,
       password: passwordHashed,
-      company_id,
+      companyId,
       phone
     })
 
