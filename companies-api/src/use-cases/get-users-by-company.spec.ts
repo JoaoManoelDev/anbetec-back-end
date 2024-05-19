@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import { GetUsersByCompanyUseCase } from "@/use-cases/get-users-by-company"
-import { UserService } from "@/services/users"
 import { User } from "@/services/dtos/user"
+import { GetUsersService } from "@/services/get-users"
 
-let userService: UserService
+let getUserService: GetUsersService
 let sut: GetUsersByCompanyUseCase
 
 const mockUsers: User[] = [
@@ -36,10 +36,10 @@ const mockUsers: User[] = [
 
 describe("Get Users By Company Use Case", () => {
   beforeEach(() => {
-    userService = {
-      findUsers: vi.fn().mockResolvedValue(mockUsers)
+    getUserService = {
+      execute: vi.fn().mockResolvedValue(mockUsers),
     }
-    sut = new GetUsersByCompanyUseCase(userService)
+    sut = new GetUsersByCompanyUseCase(getUserService)
   })
 
   it("Should be able to get users by company", async () => {

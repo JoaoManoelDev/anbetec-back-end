@@ -1,5 +1,5 @@
 import { User } from "@/services/dtos/user"
-import { UserService } from "@/services/users"
+import { GetUsersService } from "@/services/get-users"
 
 interface GetUsersByCompanyUseCaseRequest {
   companyId: string
@@ -10,12 +10,12 @@ interface GetUsersByCompanyUseCaseResponse {
 }
 
 export class GetUsersByCompanyUseCase {
-  constructor(private useService: UserService) {}
+  constructor(private getUsersService: GetUsersService) {}
 
   async execute({
     companyId
   }: GetUsersByCompanyUseCaseRequest): Promise<GetUsersByCompanyUseCaseResponse> {
-    const data = await this.useService.findUsers()
+    const data = await this.getUsersService.execute()
 
     const users = data.filter(user => user.companyId === companyId)
 
