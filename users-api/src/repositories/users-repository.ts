@@ -6,4 +6,5 @@ export interface UsersRepository {
   findByCpf(cpf: string): Promise<User | null>
   findByEmail(email: string): Promise<User | null>
   findMany(): Promise<User[] | []>
+  delete(name: string): Promise<void>
 }

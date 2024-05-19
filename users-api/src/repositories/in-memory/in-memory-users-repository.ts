@@ -46,4 +46,15 @@ export class InMemoryUsersRepository implements UsersRepository {
   async findMany() {
     return this.users
   }
+
+  async delete(name: string) {
+    const companyIndex = this.users
+      .findIndex(user => user.name === name)
+
+    if (companyIndex !== -1) {
+      this.users.splice(companyIndex, 1)
+    }
+
+    return
+  }
 }
