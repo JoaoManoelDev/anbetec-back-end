@@ -81,7 +81,7 @@ $ npm run dev
 #### Passo 1: Criação de Usuário
 - Use a rota de criação de usuário para adicionar um novo usuário ao sistema.
 
-### Passo 2: Atribuição de Empresa ao Usuário
+#### Passo 2: Atribuição de Empresa ao Usuário
 - Inicialmente, o usuário criado não possuirá uma empresa atribuída, pois não haverá empresas cadastradas no sistema.
 - Você pode atribuir uma empresa ao usuário posteriormente usando a rota de edição de usuários.
 
