@@ -1,0 +1,236 @@
+  {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API USERS",
+      "description": "Manipulação de usuários",
+      "termsOfService": "http://localhost:3334/api-docs/terms",
+      "contact": {
+        "name": "João Manoel",
+        "email": "joaomanoeldev@gmail.com"
+      },
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3334",
+        "description": "API TEST"
+      }
+    ],
+
+    "paths": {
+      "/users": {
+        "post": {
+          "summary": "Create a user",
+          "description": "This route is responsible for creating a user.",
+          "tags": ["Users"],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "name": "john",
+                      "email": "johndoe@email.com",
+                      "cpf": "12531256987",
+                      "password": "123456",
+                      "phone": "999999999",
+                      "companyId": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "409": {
+              "description": "User, email or cpf already exists."
+            },
+            "201": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+        "get": {
+          "summary": "Get a users",
+          "description": "This route is responsible for get a users.",
+          "tags": ["Users"],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+
+      "/users/{name}": {
+        "get": {
+          "summary": "Get a user",
+          "description": "This route is responsible for get a user.",
+          "tags": ["Users"],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "description": "Name of user",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Resource not found."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+
+        "delete": {
+          "summary": "Delete a user",
+          "description": "This route is responsible for delete a user.",
+          "tags": ["Users"],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "description": "Name of user",
+              "required": true
+            }
+          ],
+          "responses": {
+            "209": {
+              "description": "OK",
+              "content": {}
+            },
+            "409": {
+              "description": "Resource not found."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+
+        "put": {
+          "summary": "Update a user",
+          "description": "This route is responsible for update a user.",
+          "tags": ["Users"],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "description": "Name of user",
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "name": "john",
+                      "email": "johndoe@email.com",
+                      "cpf": "12531256987",
+                      "password": "123456",
+                      "phone": "999999999",
+                      "companyId": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "User, email or cpf already exists, or resource not found "
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      }
+    },
+
+    "components": {
+      "schemas": {
+        "User": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "cpf": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "companyId": {
+              "type": "string",
+              "default": null
+            }
+          }
+        }
+      }
+    }
+  }

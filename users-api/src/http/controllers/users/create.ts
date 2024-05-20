@@ -21,7 +21,7 @@ export class CreateUserController {
         }),
         password: z.string(),
         phone: z.string(),
-        companyId: z.string().optional()
+        companyId: z.string().optional().nullable()
       })
 
       const {

@@ -1,10 +1,10 @@
 
 import { PrismaCompanyRepository } from "@/repositories/prisma/prisma-companies-repository"
-import { GetCompaniesUseCase } from "../get-companies"
+import { GetCompanyUseCase } from "@/use-cases/get-company"
 
 export const makeGetCompanyUseCase = () => {
   const prismaCompanyRepository = new PrismaCompanyRepository()
-  const getCompaniesUseCase = new GetCompaniesUseCase(prismaCompanyRepository)
+  const getCompanyUseCase = new GetCompanyUseCase(prismaCompanyRepository)
 
-  return getCompaniesUseCase
+  return getCompanyUseCase
 }

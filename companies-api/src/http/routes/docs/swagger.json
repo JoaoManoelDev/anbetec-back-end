@@ -1,0 +1,357 @@
+  {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API COMPANIES",
+      "description": "Manipulação de empresas",
+      "termsOfService": "http://localhost:3333/api-docs/terms",
+      "contact": {
+        "name": "João Manoel",
+        "email": "joaomanoeldev@gmail.com"
+      },
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3333",
+        "description": "API TEST"
+      }
+    ],
+
+    "paths": {
+      "/auth/sign-in": {
+        "post": {
+          "summary": "Autenticar usuário",
+          "description": "Autentica um usuário com nome e senha",
+          "tags": ["Auth"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Usuário autenticado com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AuthResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Credenciais inválidas"
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+
+      "/companies": {
+        "post": {
+          "summary": "Create a company",
+          "description": "This route is responsible for creating a company.",
+          "tags": ["Companies"],
+          "security": [{ "bearerAuth": [] }],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Company"
+                },
+                "examples": {
+                  "company": {
+                    "value": {
+                      "companyName": "Anbetec",
+                      "cnpj": "95124256325874",
+                      "description": "Empresa de tecnologia"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "409": {
+              "description": "CNPJ already exists."
+            },
+            "401": {
+              "description": "Invalid token or token missing"
+            },
+            "201": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Company"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+
+        "get": {
+          "summary": "Get a companies",
+          "description": "This route is responsible for get a companies.",
+          "tags": ["Companies"],
+          "security": [{ "bearerAuth": [] }],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Company"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+
+      "/companies/{id}": {
+        "get": {
+          "summary": "Get a company",
+          "description": "This route is responsible for get a company.",
+          "tags": ["Companies"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "id of company",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Company"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Resource not found."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+
+        "delete": {
+          "summary": "Delete a company",
+          "description": "This route is responsible for delete a company.",
+          "tags": ["Companies"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Name of company",
+              "required": true
+            }
+          ],
+          "responses": {
+            "209": {
+              "description": "OK",
+              "content": {}
+            },
+            "409": {
+              "description": "Resource not found."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+
+        "put": {
+          "summary": "Update a company",
+          "description": "This route is responsible for update a company.",
+          "tags": ["Companies"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Name of company",
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Company"
+                },
+                "examples": {
+                  "company": {
+                    "value": {
+                      "companyName": "Anbetec",
+                      "cnpj": "95124256325874",
+                      "description": "Empresa de tecnologia"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Company"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "CNPJ already exists or resource not found"
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+
+      "/companies/{id}/users": {
+        "get": {
+          "summary": "Update a company",
+          "description": "This route is responsible for update a company.",
+          "tags": ["Companies"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Name of company",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      }
+    },
+
+    "components": {
+      "schemas": {
+        "AuthRequest": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "john_doe"
+            },
+            "password": {
+              "type": "string",
+              "example": "password123"
+            }
+          },
+          "required": ["name", "password"]
+        },
+        "AuthResponse": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+            }
+          }
+        },
+        "Company": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "companyName": {
+              "type": "string"
+            },
+            "cnpj": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        },
+        "User": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "cpf": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "companyId": {
+              "type": "string",
+              "default": null
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  }

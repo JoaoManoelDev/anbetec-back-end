@@ -50,6 +50,8 @@ $ npm run dev
 
 # Deve aparecer a seguinte mensagem -> [COMPANIES API] - Server Running In Port 3333!
 
+Documentação - http://localhost:3333/api-docs
+
 # ==================================================================
 
 # Configurando a API de usuários.
@@ -73,6 +75,8 @@ $ npm run test
 $ npm run dev
 
 # Deve aparecer a seguinte mensagem -> [USERS API] - Server Running In Port 3334!
+
+Documentação - http://localhost:3334/api-docs
 
 ```
 

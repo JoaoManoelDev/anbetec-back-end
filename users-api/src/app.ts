@@ -15,6 +15,6 @@ app.use(routes)
 
 app.use(errorHandler)
 
-cronGetUsersByCompany()
+// cronGetUsersByCompany()
 
 export { app }
