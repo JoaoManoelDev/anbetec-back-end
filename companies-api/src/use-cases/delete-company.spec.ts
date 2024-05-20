@@ -35,7 +35,7 @@ describe("Delete Company Use Case", () => {
     expect(companies).toHaveLength(1)
   })
 
-  it("Should not be able to delete company with wrong id", async () => {
+  it("Should not be able to delete company with an id that doesn't exist", async () => {
     await expect(() => sut.execute({
       companyId: "non-exists-company-id",
     })).rejects.toBeInstanceOf(ResourceNotFoundError)

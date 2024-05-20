@@ -37,9 +37,9 @@ describe("Delete User Use Case", () => {
     expect(users).toHaveLength(1)
   })
 
-  it("Should not be able to delete user with wrong id", async () => {
+  it("Should not be able to delete user with an name that doesn't exist", async () => {
     await expect(() => sut.execute({
-      name: "non-exists-user-id",
+      name: "non-exists-user-name",
     })).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })

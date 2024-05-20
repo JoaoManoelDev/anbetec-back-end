@@ -7,7 +7,7 @@ import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-user
 let usersRepository: InMemoryUsersRepository
 let sut: UpdateUserUseCase
 
-describe("Update USer Use Case", () => {
+describe("Update User Use Case", () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository()
     sut = new UpdateUserUseCase(usersRepository)
@@ -38,7 +38,7 @@ describe("Update USer Use Case", () => {
     })
   })
 
-  it("Should not be able to update company with wrong name", async () => {
+  it("Should not be able to update user with an name that doesn't exist", async () => {
     await expect(() => sut.execute({
       name: "non-exists-name",
       userUpdate: {

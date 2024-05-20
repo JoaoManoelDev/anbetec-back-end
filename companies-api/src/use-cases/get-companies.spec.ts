@@ -6,7 +6,7 @@ import { GetCompaniesUseCase } from "@/use-cases/get-companies"
 let companyRepository: InMemoryCompaniesRepository
 let sut: GetCompaniesUseCase
 
-describe("Get Company Use Case", () => {
+describe("Get Companies Use Case", () => {
   beforeEach(() => {
     companyRepository = new InMemoryCompaniesRepository()
     sut = new GetCompaniesUseCase(companyRepository)

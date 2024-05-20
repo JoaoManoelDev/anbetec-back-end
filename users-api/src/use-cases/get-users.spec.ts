@@ -6,7 +6,7 @@ import { GetUsersUseCase } from "./get-users"
 let usersRepository: InMemoryUsersRepository
 let sut: GetUsersUseCase
 
-describe("Get User Use Case", () => {
+describe("Get Users Use Case", () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository()
     sut = new GetUsersUseCase(usersRepository)

@@ -37,7 +37,7 @@ describe("Update Company Use Case", () => {
     })
   })
 
-  it("Should not be able to update company with wrong id", async () => {
+  it("Should not be able to update company with an id that doesn't exist", async () => {
     await expect(() => sut.execute({
       companyId: "non-exists-company-id",
       companyUpdate: {

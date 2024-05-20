@@ -24,7 +24,7 @@ describe("Create Company Use Case", () => {
     expect(company.cnpj).toEqual("12345678000100")
   })
 
-  it("Should not be able to create company already exists", async () => {
+  it("Should not be able to create company with a name that already exists", async () => {
     await companyRepository.create({
       companyName: "Anbetec",
       cnpj: "12345678000100",

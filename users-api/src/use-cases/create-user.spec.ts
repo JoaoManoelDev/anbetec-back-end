@@ -15,7 +15,7 @@ describe("Create User Use Case", () => {
     sut = new CreateUserUseCase(usersRepository)
   })
 
-  it("should be able to create user", async () => {
+  it("should be able to create a user", async () => {
     const { user } = await sut.execute({
       name: "John Doe",
       email: "johndoe@email.com",
@@ -28,7 +28,7 @@ describe("Create User Use Case", () => {
     expect(user).toMatchObject({ cpf: "123456788998" })
   })
 
-  it("should not be able to create user with wrong name", async () => {
+  it("should not be able to create user with the name already in use", async () => {
     await usersRepository.create({
       name: "John Doe",
       email: "johndoe@email.com",
@@ -47,26 +47,7 @@ describe("Create User Use Case", () => {
    
   })
 
-  it("should not be able to create user with wrong name", async () => {
-    await usersRepository.create({
-      name: "John Doe",
-      email: "johndoe@email.com",
-      cpf: "123456788998",
-      password: "123456789",
-      phone: "999999999",
-    })
-
-    await expect(() => sut.execute({
-      name: "John Doe",
-      email: "johndoe@email.com",
-      cpf: "123456788998",
-      password: "123456789",
-      phone: "999999999",
-    })).rejects.toBeInstanceOf(UserAlreadyExistsError)
-   
-  })
-
-  it("should not be able to create user with wrong email", async () => {
+  it("should not be able to create user with the email already in use", async () => {
     await usersRepository.create({
       name: "John Doe",
       email: "johndoe@email.com",
@@ -85,7 +66,7 @@ describe("Create User Use Case", () => {
    
   })
 
-  it("should not be able to create user with wrong cpf", async () => {
+  it("should not be able to create user with the cpf already in use", async () => {
     await usersRepository.create({
       name: "John Doe",
       email: "johndoe@email.com",
