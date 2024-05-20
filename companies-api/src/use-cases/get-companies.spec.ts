@@ -16,13 +16,13 @@ describe("Get Companies Use Case", () => {
     companyRepository.create({
       companyName: "Anbetec",
       cnpj: "12345678000100",
-      description: "Empresa de tecnologia"
+      description: "Technology Company"
     })
 
     companyRepository.create({
       companyName: "Anbetec 02",
       cnpj: "12345678000100",
-      description: "Empresa de tecnologia"
+      description: "Technology Company"
     })
 
     const { companies } = await sut.execute()
