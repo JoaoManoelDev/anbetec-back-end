@@ -1,9 +1,9 @@
 import { GetUsersByCompanyUseCase } from "@/use-cases/get-users-by-company"
-import { UserService } from "@/services/users"
+import { GetUsersService } from "@/services/get-users"
 
 export const makeGetUsersByCompanyUseCase = () => {
-  const userService = new UserService()
-  const getUsersByCompanyUseCase = new GetUsersByCompanyUseCase(userService)
+  const getUsersService = new GetUsersService()
+  const getUsersByCompanyUseCase = new GetUsersByCompanyUseCase(getUsersService)
 
   return getUsersByCompanyUseCase
 }
