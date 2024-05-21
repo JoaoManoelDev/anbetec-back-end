@@ -62,7 +62,7 @@ $ cd anbetec-back-end/users-api
 $ npm install
 
 # Crie uma arquivo .env e copie o arquivo .env.example dentro dele.
-# Para facilitar, o arquivo já contem o DATABASE_URL padrão do Docker configurado, só copiar.
+# Para facilitar, o arquivo já contem o DATABASE_URL padrão do Docker configurado.
 # As demais variáveis deverão ser preenchidas de acordo com suas necessidades.
 
 # Para configurar o prisma client e suas tipagens digite o comando:
