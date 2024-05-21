@@ -13,7 +13,7 @@ $ cd anbetec-back-end/_database
 $ npm install
 
 # Crie uma arquivo .env e copie o arquivo .env.example dentro dele.
-# Para facilitar, o arquivo já contem o DATABASE_URL padrão do Docker configurado.
+# Para facilitar, o arquivo já contém o DATABASE_URL padrão do Docker configurado.
 
 # Para subir o banco rode o seguinte comando:
 $ docker compose up -d
@@ -37,7 +37,7 @@ $ cd anbetec-back-end/companies-api
 $ npm install
 
 # Crie uma arquivo .env e copie o arquivo .env.example dentro dele.
-# Para facilitar, o arquivo já contem o DATABASE_URL padrão do Docker e JWT_SECRET configurado.
+# Para facilitar, o arquivo já contém o DATABASE_URL padrão do Docker e JWT_SECRET configurado.
 
 # Para configurar o prisma client e suas tipagens digite o comando:
 $ npx prisma generate
@@ -62,7 +62,7 @@ $ cd anbetec-back-end/users-api
 $ npm install
 
 # Crie uma arquivo .env e copie o arquivo .env.example dentro dele.
-# Para facilitar, o arquivo já contem o DATABASE_URL padrão do Docker configurado.
+# Para facilitar, o arquivo já contém o DATABASE_URL padrão do Docker configurado.
 # As demais variáveis deverão ser preenchidas de acordo com suas necessidades.
 
 # Para configurar o prisma client e suas tipagens digite o comando:
